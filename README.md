@@ -151,7 +151,8 @@ The application is configured for easy deployment with:
 - CORS enabled for cross-origin requests
 - Host binding to `0.0.0.0` for external access
 - Production-ready Flask configuration
-- Persistent SQLite database
+- Neon/PostgreSQL persistence through `DATABASE_URL`
+- `vercel.json` routing to the Flask application in `src/main.py`
 
 ## 🔧 Configuration
 
@@ -159,11 +160,12 @@ The application is configured for easy deployment with:
 - `FLASK_ENV`: Set to `development` for debug mode
 - `SECRET_KEY`: Flask secret key for sessions
 - `OPEN_ROUTER_KEY`: API key used to access OpenRouter translations
+- `DATABASE_URL`: Neon PostgreSQL connection string; use Neon's pooled connection string on Vercel
 
 ### Database Configuration
-- Database file: `src/database/app.db`
-- Automatic table creation on first run
-- SQLAlchemy ORM for database operations
+- Local development uses `database/app.db` when `DATABASE_URL` is not set
+- Vercel requires `DATABASE_URL` and uses Neon PostgreSQL with SSL
+- SQLAlchemy initializes the tables when the application starts
 
 ## 📱 Browser Compatibility
 
