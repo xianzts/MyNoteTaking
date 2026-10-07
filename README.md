@@ -31,7 +31,7 @@ The application is deployed and accessible at: **https://3dhkilc88dkk.manus.spac
 - **Flask-CORS**: Cross-origin resource sharing support
 
 ### Database
-- **SQLite**: Lightweight, file-based database for data persistence
+- **Neon PostgreSQL**: Managed PostgreSQL database for persistent storage
 
 ## 📁 Project Structure
 
@@ -47,8 +47,6 @@ notetaking-app/
 │   ├── static/
 │   │   ├── index.html       # Frontend application
 │   │   └── favicon.ico      # Application icon
-│   ├── database/
-│   │   └── app.db           # SQLite database file
 │   └── main.py              # Flask application entry point
 ├── venv/                    # Python virtual environment
 ├── requirements.txt         # Python dependencies
@@ -160,11 +158,11 @@ The application is configured for easy deployment with:
 - `FLASK_ENV`: Set to `development` for debug mode
 - `SECRET_KEY`: Flask secret key for sessions
 - `OPEN_ROUTER_KEY`: API key used to access OpenRouter translations
-- `DATABASE_URL`: Neon PostgreSQL connection string; use Neon's pooled connection string on Vercel
+- `DATABASE_URL`: PostgreSQL connection string; use Neon's pooled connection string on Vercel
 
 ### Database Configuration
-- Local development uses `database/app.db` when `DATABASE_URL` is not set
-- Vercel requires `DATABASE_URL` and uses Neon PostgreSQL with SSL
+- Local development and Vercel both require `DATABASE_URL` pointing to PostgreSQL
+- Neon connections use SSL; `postgres://` URLs are normalized for SQLAlchemy
 - SQLAlchemy initializes the tables when the application starts
 
 ## 📱 Browser Compatibility
@@ -209,5 +207,5 @@ Potential improvements for future versions:
 
 ---
 
-**Built with ❤️ using Flask, SQLite, and modern web technologies**
+**Built with ❤️ using Flask, PostgreSQL, and modern web technologies**
 
